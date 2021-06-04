@@ -10,4 +10,11 @@ export interface ParsedRequest {
     images: string[];
     widths: string[];
     heights: string[];
+    voteN: string[];
+    legislature: string[];
+    date: string[];
+    type: string[];
+    pour: string[];
+    abs: string[];
+    contre: string[];
 }
