@@ -5,7 +5,7 @@ import { ParsedRequest, Theme } from './types';
 export function parseRequest(req: IncomingMessage) {
     console.log('HTTP ' + req.url);
     const { pathname, query } = parse(req.url || '/', true);
-    const { fontSize, images, widths, heights, theme, md, voteN, legislature, date, type, pour, abs, contre } = (query || {});
+    const { fontSize, images, widths, heights, theme, md, voteN, legislature, date, pour, abs, contre, sort } = (query || {});
 
     if (Array.isArray(fontSize)) {
         throw new Error('Expected a single fontSize');
@@ -38,10 +38,10 @@ export function parseRequest(req: IncomingMessage) {
         voteN: getArray(voteN),
         legislature: getArray(legislature),
         date: getArray(date),
-        type: getArray(type),
         pour: getArray(pour),
         abs: getArray(abs),
-        contre: getArray(contre)
+        contre: getArray(contre),
+        sort: getArray(sort),
     };
     parsedRequest.images = getDefaultImages(parsedRequest.images, parsedRequest.theme);
     return parsedRequest;
