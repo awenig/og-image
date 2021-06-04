@@ -7,9 +7,10 @@ const twemoji = require('twemoji');
 const twOptions = { folder: 'svg', ext: '.svg' };
 const emojify = (text: string) => twemoji.parse(text, twOptions);
 
-const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString('base64');
-const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
-const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
+const light = readFileSync(`${__dirname}/../_fonts/open-sans-v20-latin-300.woff2`).toString('base64');
+const rglr = readFileSync(`${__dirname}/../_fonts/open-sans-v20-latin-regular.woff2`).toString('base64');
+const bold = readFileSync(`${__dirname}/../_fonts/open-sans-v20-latin-regular.woff2`).toString('base64');
+const extrabold = readFileSync(`${__dirname}/../_fonts/open-sans-v20-latin-800.woff2`).toString('base64');
 
 function getCss(theme: string) {
     let background = 'linear-gradient(90deg, #246B96 17.99%, #00B794 86.12%)';
@@ -20,26 +21,34 @@ function getCss(theme: string) {
         foreground = 'white';
     }
     return `
+
     @font-face {
-        font-family: 'Inter';
+        font-family: 'Open Sans';
         font-style:  normal;
-        font-weight: normal;
-        src: url(data:font/woff2;charset=utf-8;base64,${rglr}) format('woff2');
+        font-weight: 300;
+        src: local('OpenSans-Regular'), url(data:font/woff2;charset=utf-8;base64,${light}) format('woff2');
     }
 
     @font-face {
-        font-family: 'Inter';
+        font-family: 'Open Sans';
         font-style:  normal;
-        font-weight: bold;
-        src: url(data:font/woff2;charset=utf-8;base64,${bold}) format('woff2');
+        font-weight: 400;
+        src: local('OpenSans-Regular'), url(data:font/woff2;charset=utf-8;base64,${rglr}) format('woff2');
     }
 
     @font-face {
-        font-family: 'Vera';
-        font-style: normal;
-        font-weight: normal;
-        src: url(data:font/woff2;charset=utf-8;base64,${mono})  format("woff2");
-      }
+        font-family: 'Open Sans';
+        font-style:  normal;
+        font-weight: 600;
+        src: local('OpenSans-SemiBold'), url(data:font/woff2;charset=utf-8;base64,${bold}) format('woff2');
+    }
+
+    @font-face {
+        font-family: 'Open Sans';
+        font-style:  normal;
+        font-weight: 800;
+        src: local('OpenSans-ExtraBold'), url(data:font/woff2;charset=utf-8;base64,${extrabold}) format('woff2');
+    }
 
     body {
         background: ${background};
@@ -87,9 +96,9 @@ function getCss(theme: string) {
     }
 
     .subheading {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Open sans';
         font-size: 25px;
-        font-style: normal;
+        font-weight: 300;
         color: ${foreground};
         line-height: 1.8;
         font-weight: 200;
@@ -97,9 +106,9 @@ function getCss(theme: string) {
     }
 
     .heading {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Open Sans';
         font-size: 80px;
-        font-style: normal;
+        font-weight: 800;
         color: ${foreground};
         line-height: 1.8;
         margin-top: 30px;
