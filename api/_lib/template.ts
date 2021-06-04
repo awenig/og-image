@@ -107,7 +107,7 @@ function getCss(theme: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, voteN, legislature } = parsedReq;
+    const { text, theme, md, voteN, legislature, date } = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -126,7 +126,7 @@ export function getHtml(parsedReq: ParsedRequest) {
                   src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
               />
             </div>
-            <div class="subheading" style="border: 1px solid red">Vote n° ${voteN} - Législature ${legislature} - 20 juillet 2020</div>
+            <div class="subheading" style="border: 1px solid red">Vote n° ${voteN} - Législature ${legislature} - ${date}</div>
             <div class="heading" style="border: 1px solid red">${emojify(
                 md ? marked(text) : sanitizeHtml(text)
             )}

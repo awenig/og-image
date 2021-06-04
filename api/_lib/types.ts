@@ -12,4 +12,5 @@ export interface ParsedRequest {
     heights: string[];
     voteN: string[];
     legislature: string[];
+    date: string[];
 }
