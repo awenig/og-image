@@ -13,4 +13,5 @@ export interface ParsedRequest {
     voteN: string[];
     legislature: string[];
     date: string[];
+    type: string[];
 }
