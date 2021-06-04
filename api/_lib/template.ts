@@ -139,7 +139,7 @@ function getCss(theme: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, voteN, legislature, date, pour, abs, contre, sort } = parsedReq;
+    const { text, theme, md, voteN, legislature, date, pour, abs, sort } = parsedReq;
     const sortUpper = sort[0].toUpperCase();
     const pourN = +pour[0];
     const absN = +abs[0];

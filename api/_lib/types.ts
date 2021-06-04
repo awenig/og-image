@@ -15,6 +15,5 @@ export interface ParsedRequest {
     date: string[];
     pour: string[];
     abs: string[];
-    contre: string[];
     sort: string[];
 }
