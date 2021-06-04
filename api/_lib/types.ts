@@ -13,8 +13,8 @@ export interface ParsedRequest {
     voteN: string[];
     legislature: string[];
     date: string[];
-    type: string[];
     pour: string[];
     abs: string[];
     contre: string[];
+    sort: string[];
 }
