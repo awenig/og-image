@@ -14,4 +14,7 @@ export interface ParsedRequest {
     legislature: string[];
     date: string[];
     type: string[];
+    pour: string[];
+    abs: string[];
+    contre: string[];
 }

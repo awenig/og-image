@@ -142,7 +142,7 @@ function getCss(theme: string) {
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       color: white;
-      padding: 2px 10px;
+      padding: 0 10px;
       text-align: center;
       font-size: 20px;
     }
@@ -210,7 +210,7 @@ function getCss(theme: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, voteN, legislature, date, type } = parsedReq;
+    const { text, theme, md, voteN, legislature, date, type, pour, abs, contre } = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -262,15 +262,15 @@ export function getHtml(parsedReq: ParsedRequest) {
                     <div class="results">
                       <div class="flex-fill" style="background-color: #00B794; border-bottom-left-radius: 10px;">
                         <span class="legend">POUR</span>
-                        <span class="number">20</span>
+                        <span class="number">${pour}</span>
                       </div>
                       <div class="flex-fill" style="background-color: #FFAD29">
                         <span class="legend">ABSTENTION</span>
-                        <span class="number">3</span>
+                        <span class="number">${abs}</span>
                       </div>
                       <div class="flex-fill" style="background-color: #C5283D; border-bottom-right-radius: 10px;">
                         <span class="legend">CONTRE</span>
-                        <span class="number">54</span>
+                        <span class="number">${contre}</span>
                       </div>
                     </div>
                   </div>
