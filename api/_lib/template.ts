@@ -11,9 +11,9 @@ const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString
 const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
 const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
 
-function getCss(theme: string, fontSize: string) {
+function getCss(theme: string) {
     let background = 'linear-gradient(90deg, #246B96 17.99%, #00B794 86.12%)';
-    let foreground = 'black';
+    let foreground = 'white';
 
     if (theme === 'dark') {
         background = 'black';
@@ -45,9 +45,8 @@ function getCss(theme: string, fontSize: string) {
         background: ${background};
         height: 100vh;
         display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
+        border: 2px solid pink;
+        margin: 50px 150px;
     }
 
     code {
@@ -65,22 +64,19 @@ function getCss(theme: string, fontSize: string) {
         display: flex;
         align-items: center;
         align-content: center;
-        justify-content: center;
-        justify-items: center;
+        justify-content: left;
+        justify-items: left;
     }
 
     .logo {
-        margin: 0 75px;
+        width: 300px;
+        height: auto;
     }
 
     .plus {
         color: #BBB;
         font-family: Times New Roman, Verdana;
         font-size: 100px;
-    }
-
-    .spacer {
-        margin: 150px;
     }
 
     .emoji {
@@ -90,37 +86,48 @@ function getCss(theme: string, fontSize: string) {
         vertical-align: -0.1em;
     }
 
-    .heading {
+    .subheading {
         font-family: 'Inter', sans-serif;
-        font-size: ${sanitizeHtml(fontSize)};
+        font-size: 25px;
         font-style: normal;
         color: ${foreground};
         line-height: 1.8;
+        font-weight: 200;
+        margin-top: 50px;
+    }
+
+    .heading {
+        font-family: 'Inter', sans-serif;
+        font-size: 80px;
+        font-style: normal;
+        color: ${foreground};
+        line-height: 1.8;
+        margin-top: 30px;
     }`;
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize } = parsedReq;
+    const { text, theme, md, voteN, legislature } = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, fontSize)}
+        ${getCss(theme)}
     </style>
     <body>
         <div>
-            <div class="spacer">
-            <div class="logo-wrapper">
+            <div class="logo-wrapper" style="border: 1px solid red">
               <img
                   class="logo"
+                  style = "border: 1px solid yellow"
                   alt="Generated Image"
                   src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
               />
             </div>
-            <div class="spacer">
-            <div class="heading">${emojify(
+            <div class="subheading" style="border: 1px solid red">Vote n° ${voteN} - Législature ${legislature} - 20 juillet 2020</div>
+            <div class="heading" style="border: 1px solid red">${emojify(
                 md ? marked(text) : sanitizeHtml(text)
             )}
             </div>
@@ -128,7 +135,3 @@ export function getHtml(parsedReq: ParsedRequest) {
     </body>
 </html>`;
 }
-
-//function getPlusSign(i: number) {
-//    return i === 0 ? '' : '<div class="plus">+</div>';
-//}
