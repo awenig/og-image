@@ -53,7 +53,7 @@ function getCss(theme: string) {
     body{
       background: ${background};
       height: 100vh;
-      margin: 50px 150px;
+      margin: 40px 150px;
       font-family: 'Open sans';
     }
 
@@ -88,7 +88,7 @@ function getCss(theme: string) {
     }
 
     .logo{
-        width: 550px;
+        width: 500px;
         height: auto;
         margin-left: -70px;
     }
@@ -104,16 +104,16 @@ function getCss(theme: string) {
         color: ${foreground};
         line-height: 1.8;
         font-weight: 200;
-        margin-top: 40px;
+        margin-top: 20px;
     }
 
     .heading {
         font-family: 'Open Sans';
         font-size: 100px;
-        line-height: 1.4;
+        line-height: 1.25;
         font-weight: 800;
         color: ${foreground};
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     .footer{
@@ -121,7 +121,7 @@ function getCss(theme: string) {
       bottom: 0;
       left: 0;
       right: 0;
-      height: 60px;
+      height: 50px;
       display: flex;
     }
 
