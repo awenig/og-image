@@ -121,7 +121,7 @@ function getCss(theme: string) {
       bottom: 0;
       left: 0;
       right: 0;
-      height: 50px;
+      height: 110px;
       display: flex;
     }
 
@@ -135,7 +135,18 @@ function getCss(theme: string) {
 
     .footer .contre{
       background-color: #C5283D;
-    }`;
+    }
+
+    .footer div{
+      color: #fff;
+      font-weight: 800;
+      font-size: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    `;
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
@@ -174,9 +185,9 @@ export function getHtml(parsedReq: ParsedRequest) {
       )}</h1>
     </div>
     <div class="footer">
-      <div class="pour" style="width: ${pourPct}%;"></div>
-      <div class="abs" style="width: ${absPct}%;"></div>
-      <div class="contre" style="width: ${contrePct}%;"></div>
+      <div class="pour" style="width: ${pourPct}%;">${pourPct > 12 ? pourPct : "" } ${pourPct > 12 ? "%" : "" }</div>
+      <div class="abs" style="width: ${absPct}%;">${absPct > 12 ? absPct : "" } ${absPct > 12 ? "%" : "" }</div>
+      <div class="contre" style="width: ${contrePct}%;">${contrePct > 12 ? contrePct : "" } ${contrePct > 12 ? "%" : "" }</div>
     </div>
   </body>
 </html>`;
