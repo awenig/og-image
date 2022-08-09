@@ -17,4 +17,5 @@ export interface ParsedRequest {
     abs: string[];
     contre: string[];
     sort: string[];
+    template: string[];
 }

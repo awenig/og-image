@@ -149,8 +149,8 @@ function getCss(theme: string) {
     `;
 }
 
-export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, voteN, legislature, date, pour, abs, contre, sort } = parsedReq;
+export function getHtmlMP(parsedReq: ParsedRequest) {
+    const { text, theme, md, pour, abs, contre, sort, template } = parsedReq;
     const sortUpper = sort[0].toUpperCase();
     const pourN = +pour[0];
     const absN = +abs[0];
@@ -179,10 +179,11 @@ export function getHtml(parsedReq: ParsedRequest) {
       />
     </div>
     <div class="container">
-      <div class="subheading">Vote n° ${voteN} - Législature ${legislature} - ${date}</div>
+      <div class="subheading">ICI NEW SUBHEADING FOR MP</div>
       <h1 class="heading">${emojify(
         md ? marked(text) : sanitizeHtml(text)
       )}</h1>
+      <h2>${template}</h2>
     </div>
     <div class="footer">
       <div class="pour" style="width: ${pourPct}%;">${pourPct > 12 ? pourPct : "" } ${pourPct > 12 ? "%" : "" }</div>
