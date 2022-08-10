@@ -18,4 +18,8 @@ export interface ParsedRequest {
     contre: string[];
     sort: string[];
     template: string[];
+    prenom: string[];
+    nom: string[];
+    group: string[];
+    couleur: string[];
 }

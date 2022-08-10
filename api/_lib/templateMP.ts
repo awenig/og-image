@@ -125,18 +125,6 @@ function getCss(theme: string) {
       display: flex;
     }
 
-    .footer .pour{
-      background-color: #00B794;
-    }
-
-    .footer .abs{
-      background-color: #FFAD29;
-    }
-
-    .footer .contre{
-      background-color: #C5283D;
-    }
-
     .footer div{
       color: #fff;
       font-weight: 800;
@@ -150,15 +138,7 @@ function getCss(theme: string) {
 }
 
 export function getHtmlMP(parsedReq: ParsedRequest) {
-    const { text, theme, md, pour, abs, contre, sort, template } = parsedReq;
-    const sortUpper = sort[0].toUpperCase();
-    const pourN = +pour[0];
-    const absN = +abs[0];
-    const contreN = +contre[0];
-    const total = pourN + absN + contreN;
-    const pourPct = Math.round(pourN / total * 100);
-    const absPct = Math.round(absN / total * 100);
-    const contrePct = 100 - (pourPct + absPct);
+    const { text, theme, md, prenom, nom, group, couleur } = parsedReq;
     return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
@@ -168,8 +148,8 @@ export function getHtmlMP(parsedReq: ParsedRequest) {
       ${getCss(theme)}
   </style>
   <body>
-    <div class="sort ${sort}">
-      <span>${sortUpper}</span>
+    <div class="sort adopté">
+      <span>xx</span>
     </div>
     <div class="logo-wrapper">
       <img
@@ -180,16 +160,13 @@ export function getHtmlMP(parsedReq: ParsedRequest) {
     </div>
     <div class="container">
       <div class="subheading">ICI NEW SUBHEADING FOR MP</div>
+      <h1>${prenom} ${nom}</h1>
       <h1 class="heading">${emojify(
         md ? marked(text) : sanitizeHtml(text)
       )}</h1>
-      <h2>${template}</h2>
+      <h2>${group}</h2>
     </div>
-    <div class="footer">
-      <div class="pour" style="width: ${pourPct}%;">${pourPct > 12 ? pourPct : "" } ${pourPct > 12 ? "%" : "" }</div>
-      <div class="abs" style="width: ${absPct}%;">${absPct > 12 ? absPct : "" } ${absPct > 12 ? "%" : "" }</div>
-      <div class="contre" style="width: ${contrePct}%;">${contrePct > 12 ? contrePct : "" } ${contrePct > 12 ? "%" : "" }</div>
-    </div>
+    <div class="footer" style="background-color: #${couleur}"></div>
   </body>
 </html>`;
 }

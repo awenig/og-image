@@ -183,7 +183,6 @@ export function getHtmlVote(parsedReq: ParsedRequest) {
       <h1 class="heading">${emojify(
         md ? marked(text) : sanitizeHtml(text)
       )}</h1>
-      <h2>${template}</h2>
     </div>
     <div class="footer">
       <div class="pour" style="width: ${pourPct}%;">${pourPct > 12 ? pourPct : "" } ${pourPct > 12 ? "%" : "" }</div>
