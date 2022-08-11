@@ -93,27 +93,52 @@ function getCss(theme: string) {
         margin-left: -70px;
     }
 
-    .container{
+    .inside{
       margin-right: 100px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items:center;
     }
 
-    .subheading {
-        font-family: 'Open sans';
-        font-size: 40px;
-        font-weight: 300;
-        color: ${foreground};
-        line-height: 1.8;
-        font-weight: 200;
-        margin-top: 20px;
+    #photo{
+      width: 300px;
+      height: auto;
+      border-radius: 25px;
     }
 
-    .heading {
-        font-family: 'Open Sans';
-        font-size: 100px;
-        line-height: 1.25;
-        font-weight: 800;
-        color: ${foreground};
-        margin-top: 20px;
+    .titre{
+      margin-left: 50px;
+      color: white;
+      font-family: 'Open Sans';
+    }
+
+    .prenom {
+      display: block;
+      line-height: 1;
+      font-weight: 400;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .nom{
+      font-weight: 800;
+      line-height: 1;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .dpt {
+      font-size: 35px;
+      margin: 0;
+    }
+
+    .groupe {
+      font-size: 25px;
+      margin-top: 15px;
     }
 
     .footer{
@@ -121,17 +146,7 @@ function getCss(theme: string) {
       bottom: 0;
       left: 0;
       right: 0;
-      height: 110px;
-      display: flex;
-    }
-
-    .footer div{
-      color: #fff;
-      font-weight: 800;
-      font-size: 70px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 50px;
     }
 
     `;
@@ -158,13 +173,18 @@ export function getHtmlMP(parsedReq: ParsedRequest) {
         src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
       />
     </div>
-    <div class="container">
-      <div class="subheading">ICI NEW SUBHEADING FOR MP</div>
-      <h1>${prenom} ${nom}</h1>
-      <h1 class="heading">${emojify(
-        md ? marked(text) : sanitizeHtml(text)
-      )}</h1>
-      <h2>${group}</h2>
+    <div class="inside">
+      <div class="image">
+        <img src="https://datan.fr/assets/imgs/deputes_original/depute_796078.png" alt="img" id="photo">
+      </div>
+      <div class="titre">
+        <h1>
+          <span class="prenom">${prenom}</span>
+          <span class="nom">${nom}</span>
+        </h1>
+        <h2 class="dpt">${emojify(md ? marked(text) : sanitizeHtml(text))}</h2>
+        <h3 class="groupe">${group}</h3>
+      </div>
     </div>
     <div class="footer" style="background-color: #${couleur}"></div>
   </body>
