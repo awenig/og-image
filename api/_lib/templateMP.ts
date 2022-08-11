@@ -14,11 +14,9 @@ const extrabold = readFileSync(`${__dirname}/../_fonts/open-sans-v20-latin-800.w
 
 function getCss(theme: string) {
     let background = 'linear-gradient(90deg, #246B96 17.99%, #00B794 86.12%)';
-    let foreground = 'white';
 
     if (theme === 'dark') {
         background = 'black';
-        foreground = 'white';
     }
     return `
 
