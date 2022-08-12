@@ -151,7 +151,10 @@ function getCss(theme: string) {
 }
 
 export function getHtmlMP(parsedReq: ParsedRequest) {
-    const { text, theme, md, prenom, nom, group, couleur } = parsedReq;
+    const { text, theme, md, prenom, nom, group, couleur, id } = parsedReq;
+    console.log(id);
+    const img = id[0].slice(2);
+    console.log(img);
     return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
@@ -173,7 +176,7 @@ export function getHtmlMP(parsedReq: ParsedRequest) {
     </div>
     <div class="inside">
       <div class="image">
-        <img src="https://datan.fr/assets/imgs/deputes_original/depute_796078.png" alt="img" id="photo">
+        <img src="https://datan.fr/assets/imgs/deputes_original/depute_${img}.png" alt="img" id="photo">
       </div>
       <div class="titre">
         <h1>
