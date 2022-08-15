@@ -22,5 +22,6 @@ export interface ParsedRequest {
     nom: string[];
     group: string[];
     couleur: string[];
-    id: string[]
+    id: string[];
+    img: string[]
 }

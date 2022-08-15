@@ -150,10 +150,22 @@ function getCss(theme: string) {
     `;
 }
 
+function getImg(x: any, imgId: any) {
+  if (x == 1) {
+    return `
+    <div class="image">
+      <img src="https://datan.fr/assets/imgs/deputes_original/depute_${imgId}.png" alt="img" id="photo">
+    </div>
+    `;
+  } else {
+    return ``;
+  }
+}
+
 export function getHtmlMP(parsedReq: ParsedRequest) {
-    const { text, theme, md, prenom, nom, group, couleur, id } = parsedReq;
+    const { text, theme, md, prenom, nom, group, couleur, id, img } = parsedReq;
     console.log(id);
-    const img = id[0].slice(2);
+    const imgId = id[0].slice(2);
     console.log(img);
     return `<!DOCTYPE html>
 <html>
@@ -174,10 +186,9 @@ export function getHtmlMP(parsedReq: ParsedRequest) {
         src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
       />
     </div>
+
     <div class="inside">
-      <div class="image">
-        <img src="https://datan.fr/assets/imgs/deputes_original/depute_${img}.png" alt="img" id="photo">
-      </div>
+      ${getImg(img, imgId)}
       <div class="titre">
         <h1>
           <span class="prenom">${prenom}</span>
