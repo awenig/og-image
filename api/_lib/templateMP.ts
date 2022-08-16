@@ -50,9 +50,23 @@ function getCss(theme: string) {
 
     body{
       background: ${background};
-      height: 100vh;
-      margin: 40px 150px;
+      padding: 0;
       font-family: 'Open sans';
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      height: 1000px;
+    }
+
+    .container{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      width: 100%;
+      height: 100%;
+      padding-left: 150px;
     }
 
     .sort{
@@ -92,8 +106,8 @@ function getCss(theme: string) {
     }
 
     .inside{
-      margin-right: 100px;
       width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: row;
       justify-content: start;
@@ -101,7 +115,7 @@ function getCss(theme: string) {
     }
 
     #photo{
-      width: 300px;
+      width: 450px;
       height: auto;
       border-radius: 25px;
     }
@@ -130,12 +144,12 @@ function getCss(theme: string) {
     }
 
     .dpt {
-      font-size: 35px;
+      font-size: 50px;
       margin: 0;
     }
 
     .groupe {
-      font-size: 25px;
+      font-size: 30px;
       margin-top: 15px;
     }
 
@@ -164,9 +178,9 @@ function getImg(x: any, imgId: any) {
 
 export function getHtmlMP(parsedReq: ParsedRequest) {
     const { text, theme, md, prenom, nom, group, couleur, id, img } = parsedReq;
-    console.log(id);
     const imgId = id[0].slice(2);
-    console.log(img);
+    const prenomFont = 4 / (prenom[0].length ** 0.3);
+    const nomFont = 6 / (nom[0].length ** 0.3);
     return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
@@ -179,23 +193,24 @@ export function getHtmlMP(parsedReq: ParsedRequest) {
     <div class="sort adopté">
       <span>xx</span>
     </div>
-    <div class="logo-wrapper">
-      <img
-        class="logo"
-        alt="Generated Image"
-        src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
-      />
-    </div>
-
-    <div class="inside">
-      ${getImg(img, imgId)}
-      <div class="titre">
-        <h1>
-          <span class="prenom">${prenom}</span>
-          <span class="nom">${nom}</span>
-        </h1>
-        <h2 class="dpt">${emojify(md ? marked(text) : sanitizeHtml(text))}</h2>
-        <h3 class="groupe">${group}</h3>
+    <div class="container">
+      <div class="logo-wrapper">
+        <img
+          class="logo"
+          alt="Generated Image"
+          src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
+        />
+      </div>
+      <div class="inside">
+        ${getImg(img, imgId)}
+        <div class="titre">
+          <h1>
+            <span class="prenom" style="font-size: ${prenomFont}em">${prenom}</span>
+            <span class="nom" style="font-size: ${nomFont}em">${nom}</span>
+          </h1>
+          <h2 class="dpt">${emojify(md ? marked(text) : sanitizeHtml(text))}</h2>
+          <h3 class="groupe">${group}</h3>
+        </div>
       </div>
     </div>
     <div class="footer" style="background-color: #${couleur}"></div>
