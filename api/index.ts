@@ -3,6 +3,7 @@ import { parseRequest } from './_lib/parser';
 import { getScreenshot } from './_lib/chromium';
 import { getHtmlVote } from './_lib/templateVote';
 import { getHtmlMP } from './_lib/templateMP';
+import { getHtmlGroup } from './_lib/templateGroup';
 
 const isDev = !process.env.AWS_REGION;
 const isHtmlDebug = process.env.OG_HTML_DEBUG === '1';
@@ -14,8 +15,10 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
 
         if (parsedReq.template[0] == 'vote') {
           html = getHtmlVote(parsedReq);
-        } else {
+        } else if(parsedReq.template[0] == 'mp') {
           html = getHtmlMP(parsedReq);
+        } else if (parsedReq.template[0] == 'group') {
+          html = getHtmlGroup(parsedReq);
         }
 
         if (isHtmlDebug) {
