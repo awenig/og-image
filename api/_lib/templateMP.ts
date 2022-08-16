@@ -56,7 +56,7 @@ function getCss(theme: string) {
       flex: 1;
       justify-content: center;
       align-items: center;
-      height: 1000px;
+      height: 1080px;
     }
 
     .container{
@@ -69,38 +69,14 @@ function getCss(theme: string) {
       padding-left: 150px;
     }
 
-    .sort{
-      position: absolute;
-      right: 0;
-      top: 0;
-      box-shadow: inset 3px 1px 4px rgb(0 0 0 / 25%);
-      padding: 35px 120px;
-      background-color: #fff;
-      border-bottom-left-radius: 40px;
-    }
-
-    .sort span{
-      font-size: 60px;
-      font-weight: 800;
-    }
-
-    .sort.adopté{
-      color: #00B794;
-    }
-
-    .sort.rejeté{
-      color: #C5283D;
-    }
-
     .logo-wrapper{
-        display: flex;
-        align-items: center;
-        align-content: center;
-        justify-content: left;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 
     .logo{
-        width: 500px;
+        width: 550px;
         height: auto;
         margin-left: -70px;
     }
@@ -115,13 +91,13 @@ function getCss(theme: string) {
     }
 
     #photo{
-      width: 450px;
+      width: 500px;
       height: auto;
       border-radius: 25px;
     }
 
     .titre{
-      margin-left: 50px;
+      margin-left: 75px;
       color: white;
       font-family: 'Open Sans';
     }
@@ -129,7 +105,7 @@ function getCss(theme: string) {
     .prenom {
       display: block;
       line-height: 1;
-      font-weight: 400;
+      font-weight: 600;
       padding: 0;
       margin: 0;
       text-align: left;
@@ -144,12 +120,13 @@ function getCss(theme: string) {
     }
 
     .dpt {
-      font-size: 50px;
-      margin: 0;
+      font-size: 60px;
+      margin-top: 30px;
+      margin-bottom: 0;
     }
 
     .groupe {
-      font-size: 30px;
+      font-size: 45px;
       margin-top: 15px;
     }
 
@@ -179,8 +156,8 @@ function getImg(x: any, imgId: any) {
 export function getHtmlMP(parsedReq: ParsedRequest) {
     const { text, theme, md, prenom, nom, group, couleur, id, img } = parsedReq;
     const imgId = id[0].slice(2);
-    const prenomFont = 4 / (prenom[0].length ** 0.3);
-    const nomFont = 6 / (nom[0].length ** 0.3);
+    const prenomFont = 6 / (prenom[0].length ** 0.3);
+    const nomFont = 8 / (nom[0].length ** 0.3);
     return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
@@ -190,17 +167,14 @@ export function getHtmlMP(parsedReq: ParsedRequest) {
       ${getCss(theme)}
   </style>
   <body>
-    <div class="sort adopté">
-      <span>xx</span>
+    <div class="logo-wrapper">
+      <img
+        class="logo"
+        alt="Generated Image"
+        src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
+      />
     </div>
     <div class="container">
-      <div class="logo-wrapper">
-        <img
-          class="logo"
-          alt="Generated Image"
-          src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
-        />
-      </div>
       <div class="inside">
         ${getImg(img, imgId)}
         <div class="titre">
