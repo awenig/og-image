@@ -23,5 +23,6 @@ export interface ParsedRequest {
     group: string[];
     couleur: string[];
     id: string[];
-    img: string[]
+    img: string[];
+    abrev: string[];
 }

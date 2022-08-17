@@ -90,10 +90,15 @@ function getCss(theme: string) {
       align-items:center;
     }
 
+    .image{
+      background-color: #fff;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
     #photo{
-      width: 500px;
+      width: 300px;
       height: auto;
-      border-radius: 25px;
     }
 
     .titre{
@@ -102,25 +107,26 @@ function getCss(theme: string) {
       font-family: 'Open Sans';
     }
 
-    .prenom {
+    .group {
       display: block;
       line-height: 1;
-      font-weight: 600;
+      font-weight: 800;
       padding: 0;
       margin: 0;
       text-align: left;
     }
 
-    .nom{
-      font-weight: 800;
+    .abrev{
+      font-weight: 600;
       line-height: 1;
       padding: 0;
       margin: 0;
       text-align: left;
+      font-size: 45px;
     }
 
-    .dpt {
-      font-size: 60px;
+    .description {
+      font-size: 50px;
       margin-top: 30px;
       margin-bottom: 0;
     }
@@ -141,23 +147,9 @@ function getCss(theme: string) {
     `;
 }
 
-function getImg(x: any, imgId: any) {
-  if (x == 1) {
-    return `
-    <div class="image">
-      <img src="https://datan.fr/assets/imgs/deputes_original/depute_${imgId}.png" alt="img" id="photo">
-    </div>
-    `;
-  } else {
-    return ``;
-  }
-}
-
 export function getHtmlGroup(parsedReq: ParsedRequest) {
-    const { text, theme, md, prenom, nom, group, couleur, id, img } = parsedReq;
-    const imgId = id[0].slice(2);
-    const prenomFont = 6 / (prenom[0].length ** 0.3);
-    const nomFont = 8 / (nom[0].length ** 0.3);
+    const { text, theme, md, group, couleur, abrev, legislature } = parsedReq;
+    const groupFont = 8 / (group[0].length ** 0.3);
     return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
@@ -176,15 +168,15 @@ export function getHtmlGroup(parsedReq: ParsedRequest) {
     </div>
     <div class="container">
       <div class="inside">
-        ${getImg(img, imgId)}
+        <div class="image">
+          <img src="https://datan.fr/assets/imgs/groupes/${legislature}/${abrev}.png" alt="img" id="photo">
+        </div>
         <div class="titre">
           <h1>
-            GROUP A FAIRE ! 
-            <span class="prenom" style="font-size: ${prenomFont}em">${prenom}</span>
-            <span class="nom" style="font-size: ${nomFont}em">${nom}</span>
+            <span class="group" style="font-size: ${groupFont}em">${group}</span>
+            <span class="abrev">${abrev}</span>
           </h1>
-          <h2 class="dpt">${emojify(md ? marked(text) : sanitizeHtml(text))}</h2>
-          <h3 class="groupe">${group}</h3>
+          <h2 class="description">${emojify(md ? marked(text) : sanitizeHtml(text))}</h2>
         </div>
       </div>
     </div>
