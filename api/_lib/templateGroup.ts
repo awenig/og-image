@@ -105,6 +105,8 @@ function getCss(theme: string) {
       margin-left: 75px;
       color: white;
       font-family: 'Open Sans';
+      margin-top: 0;
+      padding: 0;
     }
 
     .group {
@@ -119,8 +121,7 @@ function getCss(theme: string) {
     .abrev{
       font-weight: 600;
       line-height: 1;
-      padding: 0;
-      margin: 0;
+      margin-top: 25px;
       text-align: left;
       font-size: 45px;
     }
@@ -174,8 +175,8 @@ export function getHtmlGroup(parsedReq: ParsedRequest) {
         <div class="titre">
           <h1>
             <span class="group" style="font-size: ${groupFont}em">${group}</span>
-            <span class="abrev">${abrev}</span>
           </h1>
+          <h2 class="abrev">${abrev}</h2>
           <h2 class="description">${emojify(md ? marked(text) : sanitizeHtml(text))}</h2>
         </div>
       </div>
