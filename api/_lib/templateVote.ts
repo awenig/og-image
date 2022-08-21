@@ -149,7 +149,7 @@ function getCss(theme: string) {
     `;
 }
 
-export function getHtml(parsedReq: ParsedRequest) {
+export function getHtmlVote(parsedReq: ParsedRequest) {
     const { text, theme, md, voteN, legislature, date, pour, abs, contre, sort } = parsedReq;
     const sortUpper = sort[0].toUpperCase();
     const pourN = +pour[0];
