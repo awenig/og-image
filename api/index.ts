@@ -4,6 +4,7 @@ import { getScreenshot } from './_lib/chromium';
 import { getHtmlVote } from './_lib/templateVote';
 import { getHtmlMP } from './_lib/templateMP';
 import { getHtmlGroup } from './_lib/templateGroup';
+import { getHtmlExplication } from './_lib/templateExplication';
 
 const isDev = !process.env.AWS_REGION;
 const isHtmlDebug = process.env.OG_HTML_DEBUG === '1';
@@ -19,6 +20,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
           html = getHtmlMP(parsedReq);
         } else if (parsedReq.template[0] == 'group') {
           html = getHtmlGroup(parsedReq);
+        } else if (parsedReq.template[0] == 'explication') {
+          html = getHtmlExplication(parsedReq);
         }
 
         if (isHtmlDebug) {
