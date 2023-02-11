@@ -180,8 +180,6 @@ function getImg(x: any, imgId: any) {
 export function getHtmlExplication(parsedReq: ParsedRequest) {
     const { text, theme, md, prenom, nom, group, couleur, id, img } = parsedReq;
     const imgId = id[0].slice(2);
-    const prenomFont = 6 / (prenom[0].length ** 0.3);
-    const nomFont = 8 / (nom[0].length ** 0.3);
     return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
