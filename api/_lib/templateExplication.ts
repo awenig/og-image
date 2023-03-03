@@ -1,4 +1,4 @@
-// http://localhost:3000/Assurer%20un%20repas%20%C3%A0%201%20euros%20pour%20tous%20les%20%C3%A9tudiants?prenom=Fatiha&nom=Keloua%20Hachi&group=SOC&couleur=e30040&template=explication&id=PA795156&img=1
+// http://localhost:3000/Assurer%20un%20repas%20%C3%A0%201%20euros%20pour%20tous%20les%20%C3%A9tudiants?prenom=Fatiha&nom=Keloua%20Hachi&template=explication&id=PA795156&sort=pour&img=1
 
 import { readFileSync } from 'fs';
 import marked from 'marked';
@@ -72,15 +72,42 @@ function getCss(theme: string) {
     }
 
     .logo-wrapper{
-        position: absolute;
-        top: 0;
-        right: 0;
+      position: absolute;
+      top: 25px;
+      left: 175px;
     }
 
     .logo{
-        width: 450px;
-        height: auto;
-        margin-left: -70px;
+      width: 400px;
+      height: auto;
+      margin-left: -35px;
+    }
+
+    .sort{
+      position: absolute;
+      right: 0;
+      top: 0;
+      box-shadow: inset 3px 1px 4px rgb(0 0 0 / 25%);
+      padding: 45px 125px;
+      background-color: #fff;
+      border-bottom-left-radius: 40px;
+    }
+
+    .sort span{
+      font-size: 60px;
+      font-weight: 800;
+    }
+
+    .sort.pour{
+      color: #00B794;
+    }
+
+    .sort.contre{
+      color: #C5283D;
+    }
+
+    .sort.abstention{
+      color: #FFBA49;
     }
 
     .inside{
@@ -105,14 +132,13 @@ function getCss(theme: string) {
 
     .vote {
       font-weight: 800;
-      font-size: 80px;
+      font-size: 90px;
       margin-bottom: 0;
     }
 
     .explication{
-      margin-top: 3rem;
-      margin-bottom: 0;
-      font-size: 45px;
+      margin: 0;
+      font-size: 65px;
       font-weight: 400;
     }
 
@@ -120,44 +146,26 @@ function getCss(theme: string) {
       font-weight: 800;
     }
 
-    .group {
-      font-size: 75%;
-      padding: 0.3em 0.6em;
-      border-radius: 0.25rem;
-      border: none;
-      font-weight: 800;
-    }
-
-    .block-lines{
-      margin-top: 3rem;
+    .block-mp{
+      padding; 0;
+      margin-top: 4rem;
       display: flex;
       flex-direction: row;
+      justify-content: start;
+      align-items: center;
     }
 
     .block-image{
       width: 200px;
-      margin-right: 25px;
-      padding-right: 25px;
+      margin-right: 90px;
     }
 
     .image-wrapper{
-      width: 200px;
-      height: 200px;
+      width: 250px;
+      height: 250px;
       overflow: hidden;
       border-radius: 50%;
       padding: 0;
-    }
-
-    .lines{
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .line{
-      height: 35px;
-      background-color: #efefef;
-      margin: .75rem 0 .75rem 0;
     }
 
     `;
@@ -178,7 +186,8 @@ function getImg(x: any, imgId: any) {
 }
 
 export function getHtmlExplication(parsedReq: ParsedRequest) {
-    const { text, theme, md, prenom, nom, group, couleur, id, img } = parsedReq;
+    const { text, theme, md, prenom, nom, id, sort, img } = parsedReq;
+    const sortUpper = sort[0].toUpperCase();
     const imgId = id[0].slice(2);
     return `<!DOCTYPE html>
 <html>
@@ -190,25 +199,18 @@ export function getHtmlExplication(parsedReq: ParsedRequest) {
   </style>
   <body>
     <div class="logo-wrapper">
-      <img
-        class="logo"
-        alt="Generated Image"
-        src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"
-      />
+      <img class="logo" alt="Logo Datan" src="https://datan.fr/assets/imgs/datan/logo_white_transp.png"/>
+    </div>
+    <div class="sort ${sort}">
+      <span>${sortUpper}</span>
     </div>
     <div class="container">
       <div class="inside">
         <div class="titre">
           <h1 class="vote">${emojify(md ? marked(text) : sanitizeHtml(text))}</h1>
-          <h2 class="explication">L'explication de vote de <span class="mp">${prenom} ${nom}</span> <span class="group" style="background-color: #${couleur}">${group}</span></h2>
-          <div class="block-lines">
+          <div class="block-mp">
             ${getImg(img, imgId)}
-            <div class="lines">
-              <div class="line" style="width: 100%">1</div>
-              <div class="line" style="width: 100%">2</div>
-              <div class="line" style="width: 100%">2</div>
-              <div class="line" style="width: 75%">3</div>
-            </div>
+            <h2 class="explication">L'explication de vote de<br><span class="mp">${prenom} ${nom}</span></h2>
           </div>
         </div>
       </div>
