@@ -1,4 +1,4 @@
-// http://localhost:3000/Assurer%20un%20repas%20%C3%A0%201%20euros%20pour%20tous%20les%20%C3%A9tudiants?prenom=Fatiha&nom=Keloua%20Hachi&group=SOC&couleur=e30040&template=explication&id=PA795156&sort=pour&img=1
+// http://localhost:3000/Assurer%20un%20repas%20%C3%A0%201%20euros%20pour%20tous%20les%20%C3%A9tudiants?prenom=Fatiha&nom=Keloua%20Hachi&template=explication&id=PA795156&sort=pour&img=1
 
 import { readFileSync } from 'fs';
 import marked from 'marked';
@@ -146,14 +146,6 @@ function getCss(theme: string) {
       font-weight: 800;
     }
 
-    .group {
-      font-size: 75%;
-      padding: 0.3em 0.6em;
-      border-radius: 0.25rem;
-      border: none;
-      font-weight: 800;
-    }
-
     .block-mp{
       padding; 0;
       margin-top: 4rem;
@@ -194,7 +186,7 @@ function getImg(x: any, imgId: any) {
 }
 
 export function getHtmlExplication(parsedReq: ParsedRequest) {
-    const { text, theme, md, prenom, nom, group, couleur, id, sort, img } = parsedReq;
+    const { text, theme, md, prenom, nom, id, sort, img } = parsedReq;
     const sortUpper = sort[0].toUpperCase();
     const imgId = id[0].slice(2);
     return `<!DOCTYPE html>
